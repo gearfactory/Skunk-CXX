@@ -1,2 +1,7 @@
 # Skunk
-Event-Driven network framework implemented by CXX
+
+[![Build Status](https://travis-ci.org/gearfactory/Skunk.svg?branch=master)](https://travis-ci.org/gearfactory/Skunk)
+
+***
+
+Skunk is a Reactor pattern network framework, you can get more inforamtion at [Gear Factory Skunk page](https://gearfactory.github.io/skunk)

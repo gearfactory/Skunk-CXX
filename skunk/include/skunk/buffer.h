@@ -123,7 +123,6 @@ namespace skunk{
       
 
     private: 
-      friend class Buffer;
       char * data_;
       size_t length_;
       size_t read_pointer_;
