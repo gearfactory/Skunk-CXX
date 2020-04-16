@@ -14,14 +14,25 @@ if(SKUNK_UNIT_TEST)
 
   include_directories(
     PUBLIC "skunk/include"
+    PUBLIC "skunk"
     PUBLIC "${GOOLETESTDIR}/googletest/include"
   )
 
   # FIXME: should make a cmake function to generate the test as function 
-  # test skunk/buffer.h
+  
+  # test skunk/buffer.cc
   add_executable(buffer_test "tests/buffer_test.cc")
-  target_link_libraries(buffer_test gtest pthread)
-  add_test(buffer_test_routine buffer_test)
+  target_link_libraries(buffer_test gtest pthread skunk)
+  add_test(buffer_test buffer_test)
+
+  # # test skunk/eventloop.cc
+  add_executable(eventloop_test "tests/eventloop_test.cc")
+  target_link_libraries(eventloop_test gtest pthread skunk)
+  add_test(eventloop_test eventloop_test)
+
+  add_executable(block_queue_test "tests/block_queue_test.cc")
+  target_link_libraries(block_queue_test gtest pthread skunk)
+  add_test(block_queue_test block_queue_test)
 
   
 endif()

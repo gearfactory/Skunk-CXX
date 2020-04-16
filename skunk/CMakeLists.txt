@@ -8,6 +8,7 @@ include_directories(
 
 add_library(skunk
   "eventloop.cc"
+  "buffer.cc"
 )
 target_link_libraries(skunk pthread)
 
