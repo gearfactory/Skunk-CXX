@@ -8,15 +8,14 @@
 GTEST_TEST(block_queue_test, simple){
   skunk::BlockQueue<int> queue;
   queue.put(1);
-
   EXPECT_EQ(1, queue.take());
 }
 
-GTEST_TEST(block_queue_test, cocurrent_insert){
+GTEST_TEST(block_queue_test, simple_cocurrent_insert){
   skunk::BlockQueue<int> queue;
   
-  std::thread first(std::bind(&skunk::BlockQueue<int>::put, &queue, 1));
-  std::thread second(std::bind(&skunk::BlockQueue<int>::put, &queue, 2));
+  std::thread first([](skunk::BlockQueue<int> * q){q -> put(1);}, &queue);
+  std::thread second([](skunk::BlockQueue<int> * q){q -> put(2);}, &queue);
 
   first.join();
   second.join();
@@ -25,10 +24,10 @@ GTEST_TEST(block_queue_test, cocurrent_insert){
   result.push_back(queue.take());
   result.push_back(queue.take());
 
-  //std::move
-
   EXPECT_EQ((std::vector<int>{1,2}), result);
 }
+
+
 
 int main(int argc, const char** argv) {
     testing::InitGoogleTest();

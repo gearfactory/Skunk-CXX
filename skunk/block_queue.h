@@ -4,13 +4,15 @@
 #include <deque>
 #include <condition_variable>
 
+#include "skunk/utility.h"
+
 namespace skunk{
   
   /**
    * BlockQueue simple implementation
    */
   template<typename T>
-  class BlockQueue{
+  class BlockQueue: noncopyable{
     public:
       BlockQueue(): queue_(), mutex_(), cond_(){}
 
@@ -32,6 +34,7 @@ namespace skunk{
           cond_.wait(lock);
         }
         // the T should implement the move constructor 
+        // FIXME: should use some useful traits from STL to handle this trais 
         T front(std::move(queue_.front()));
         queue_.pop_front();
         return front;

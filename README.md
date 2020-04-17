@@ -4,4 +4,4 @@
 
 ***
 
-Skunk is a Reactor pattern network framework, you can get more inforamtion at [Gear Factory Skunk page](https://gearfactory.github.io/skunk)
+Skunk is a Reactor pattern network framework, you can get more deatils at [Gear Factory Skunk page](https://gearfactory.github.io/skunk)

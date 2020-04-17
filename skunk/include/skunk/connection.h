@@ -1,12 +1,14 @@
 #pragma once
 
 namespace skunk{
-  
+  class Socket;
   /**
-   * this is a simple Connection of TCP and UDP new feature  
+   * this is a simple Connection of TCP  
    */
   class Connection{
 
+    private:
+      Socket socket_; 
   };
 
 } // namespace skunk

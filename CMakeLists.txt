@@ -18,21 +18,22 @@ if(SKUNK_UNIT_TEST)
     PUBLIC "${GOOLETESTDIR}/googletest/include"
   )
 
-  # FIXME: should make a cmake function to generate the test as function 
+  function(SKUNK_TEST testname testfile)
+    add_executable(${testname} ${testfile})
+    target_link_libraries(${testname} gtest pthread skunk)
+    add_test(${testname} ${testname})
+  endfunction(SKUNK_TEST)
+  
   
   # test skunk/buffer.cc
-  add_executable(buffer_test "tests/buffer_test.cc")
-  target_link_libraries(buffer_test gtest pthread skunk)
-  add_test(buffer_test buffer_test)
+  SKUNK_TEST(buffer_test "tests/buffer_test.cc")
 
-  # # test skunk/eventloop.cc
-  add_executable(eventloop_test "tests/eventloop_test.cc")
-  target_link_libraries(eventloop_test gtest pthread skunk)
-  add_test(eventloop_test eventloop_test)
+  # test skunk/eventloop.cc
+  SKUNK_TEST(eventloop_test "tests/eventloop_test.cc")
 
-  add_executable(block_queue_test "tests/block_queue_test.cc")
-  target_link_libraries(block_queue_test gtest pthread skunk)
-  add_test(block_queue_test block_queue_test)
+  # test skunk/block_queue.h
+  SKUNK_TEST(block_queue_test "tests/block_queue_test.cc")
+
 
   
 endif()

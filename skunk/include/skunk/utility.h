@@ -1,5 +1,11 @@
 #pragma once 
 
+// some usefull macro 
+#include <iostream>
+
+// TODO: should use the https://github.com/gearfactory/kangaroo project to print log
+#define LOG(log) do{std::cout << "[file: " << __FILE__ << " at: " << __LINE__ << " ]" << log << std::endl }while(0)
+
 namespace skunk{
 
   // copy from boost 
