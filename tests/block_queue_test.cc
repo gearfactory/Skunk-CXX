@@ -11,6 +11,7 @@ GTEST_TEST(block_queue_test, simple){
   EXPECT_EQ(1, queue.take());
 }
 
+// FIXME: I thinks this method could contain some concurrency problem
 GTEST_TEST(block_queue_test, simple_cocurrent_insert){
   skunk::BlockQueue<int> queue;
   
