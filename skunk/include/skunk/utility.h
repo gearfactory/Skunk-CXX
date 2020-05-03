@@ -1,6 +1,5 @@
 #pragma once 
 
-// some usefull macro 
 #include <iostream>
 #include <endian.h>
 #include <stdint.h>
@@ -20,7 +19,7 @@ namespace skunk{
       const noncopyable& operator=( const noncopyable& );
   };
 
-  /// 
+  /// endianess handler inline functions
   namespace endian{
      inline uint16_t Host2NetUint16(uint16_t data){
         return htobe16(data);
@@ -62,4 +61,7 @@ namespace skunk{
 
   } // namespace endian
   
+  /// when call this function will let this process to Daemonize mode 
+  void Daemonize();
+
 } // namespace skunk
