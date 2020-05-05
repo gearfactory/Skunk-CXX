@@ -12,6 +12,8 @@ namespace skunk{
 
   };
 
-  
+  class SkunkThreadLocal{
+
+  };
 
 } // namespace skunk
