@@ -9,15 +9,11 @@ namespace skunk{
   /**
    * IP V4 address 
    */
-  class InetAddress4{
+  class InetAddress{
 
     private: 
 
   };
-
-  namespace inet{
-    
-  } // namespace inet
 } // namespace skunk
 
 #endif // !__SKUNK_INET_H__
