@@ -1,4 +1,5 @@
-#pragma once 
+#ifndef __SKUNK_BUFFER_H__
+#define __SKUNK_BUFFER_H__
 
 #include <stdint.h>
 #include <string.h>
@@ -10,15 +11,27 @@
 namespace skunk{
   class Condition;
   /**
-   * Buffer Interface in Skunk CRTP pattern
-   * @see DirectBuffer 
-   * @see DoubleBuffer
-   * @see CircularBuffer
-   */ 
+    * DirectBuffer will be used as the only interface to read/write data from the application layer
+    *+------------+-------------+------------+
+    *|            |             |            |
+    *| prependable|  readable   | writeable  |
+    *|            |             |            |
+    *+---------------------------------------+
+    *|            |             |            |
+    *v            v             v            v
+    *0           rp            wp          size
+    * 
+    * the wp - rp is the readable data
+    * the size - wp is the writeable data
+    * we can make rp to move to a new poisiton and the rp - 0 is the prependable data 
+    * 
+    * the Buffer could not be copied 
+   */
   template<class DerivedBuffer>
-  class BufferTraits: noncopyable {
+  class Buffer: noncopyable {
     public: 
-      virtual ~BufferTraits(){};
+      Buffer(size_t size){}
+      ~Buffer(){};
     public: 
       /**
        * Get the readable size of this buffer
@@ -156,49 +169,6 @@ namespace skunk{
         Write((char*)&tmp, sizeof(uint64_t));
       }
   };
-
-  /**
-    * DirectBuffer will be used as the only interface to read/write data from the application layer
-    *+------------+-------------+------------+
-    *|            |             |            |
-    *| prependable|  readable   | writeable  |
-    *|            |             |            |
-    *+---------------------------------------+
-    *|            |             |            |
-    *v            v             v            v
-    *0           rp            wp          size
-    * 
-    * the wp - rp is the readable data
-    * the size - wp is the writeable data
-    * we can make rp to move to a new poisiton and the rp - 0 is the prependable data 
-    * 
-    * the Buffer could not be copied 
-   */
-  class DirectBuffer: public BufferTraits<DirectBuffer>{
-    private: 
-      std::unique_ptr<char*> data_;
-      char * readPointer_;
-      char * writePointer_;
-  };
-
-  /// DoubleBuffer with two buffer data_[0] and data_[1] swap when other is fulled
-  class DoubleBuffer: public BufferTraits<DoubleBuffer>{
-    private:
-      char * data_[2];
-
-  };
-
-  /// RingBuffer 
-  class CircularBuffer: public BufferTraits<CircularBuffer>{
-    private: 
-      std::unique_ptr<char*> data_;
-      char * readPointer_;
-      char * writePointer_;
-  };
-
-  using Buffer = BufferTraits<DirectBuffer>;
-
-  Buffer * NewBuffer(size_t capcity){
-
-  }
 } // namespace skunk
+
+#endif // !__SKUNK_BUFFER_H__
