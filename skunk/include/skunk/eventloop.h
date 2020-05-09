@@ -7,6 +7,7 @@
 namespace skunk{
   class Future;
   class ThreadPool;
+  class Channel;
   /**
    * EventLoop will run on a thread pool 
    * use Acceptor to accept the socket from the server fild descriptor 
@@ -16,6 +17,8 @@ namespace skunk{
       Future Loop();
       std::unique_ptr<ThreadPool> GetThreadPool();
 
+      // OnTimeout();
+      // OnSignal();
     private: 
       std::unique_ptr<ThreadPool> threadpool_;
 
@@ -24,5 +27,5 @@ namespace skunk{
 
 /**
  * eventloop .start() -> Future.Get(); will suspend the Main function to wait the result of Future 
- * 
+ * eventLoop 
  */

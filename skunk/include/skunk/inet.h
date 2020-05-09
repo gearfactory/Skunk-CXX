@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __SKUNK_INET_H__
+#define __SKUNK_INET_H__
 
 #include <netinet/in.h>
 #include <sys/types.h>
@@ -18,3 +19,7 @@ namespace skunk{
     
   } // namespace inet
 } // namespace skunk
+
+#endif // !__SKUNK_INET_H__
+
+

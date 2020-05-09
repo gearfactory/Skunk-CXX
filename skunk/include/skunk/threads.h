@@ -2,16 +2,16 @@
 
 namespace skunk{
   
-  class Thread{
+  /// Skunk Thread abstraction
+  class SkunkThread{
 
   };
 
-  class ThreadLocal{
+  /// Skunk ThreadPool
+  class SkunkThreadPool{
 
   };
 
-  class ThreadPool{
-
-  };
+  
 
 } // namespace skunk
