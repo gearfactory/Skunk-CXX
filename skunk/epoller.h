@@ -4,8 +4,8 @@
 namespace skunk{
   
   class Epoller{
-    
-  }
+
+  };
   
 } // namespace skunk
 

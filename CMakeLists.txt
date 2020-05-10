@@ -32,7 +32,7 @@ if(SKUNK_UNIT_TEST)
   SKUNK_TEST(eventloop_test "tests/eventloop_test.cc")
 
   # test skunk/block_queue.h template 
-  SKUNK_TEST(block_queue_test "tests/block_queue_test.cc")
+  #SKUNK_TEST(block_queue_test "tests/block_queue_test.cc")
 
 endif()
 

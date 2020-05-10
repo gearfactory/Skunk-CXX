@@ -33,13 +33,13 @@ namespace skunk{
       int active_;
 
       /// read callback function
-      std::function<void> readCallback_;
+      std::function<void()> readCallback_;
       /// write callback
-      std::function<void> writeCallback_;
+      std::function<void()> writeCallback_;
       /// close callback 
-      std::fucntion<void> closeCallback_;
+      std::function<void()> closeCallback_;
       /// error callback 
-      std::function<void> errorCallback_;
+      std::function<void()> errorCallback_;
   };
 
 } // namespace skunk
