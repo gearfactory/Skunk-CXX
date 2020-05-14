@@ -22,8 +22,15 @@ namespace skunk{
     public: 
       /**
        * will start this EventLoop in Thread 
+       * 
+       * Loop on Poller 
        */
-      void Loop();
+      void Start();
+
+      /**
+       * close current eventloop 
+       */
+      void Close();
 
       /**
        * add a channel to this eventloop 
@@ -38,7 +45,7 @@ namespace skunk{
       /**
        * check if this eventloop contain the channel 
        */
-      bool HaveChannel(channel * channel); 
+      bool HasChannel(channel * channel); 
 
     private: 
       /// specify this eventloop started 

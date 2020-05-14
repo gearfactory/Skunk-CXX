@@ -3,13 +3,27 @@
 
 namespace skunk{
   
-  enum Event: int{
-    EV_IN = 0x00001,
-    EV_OUT = 0x00010,
-    EV_TIMEOUT = 0x00100
+  class Event{
+    public:
+      Event();
+      ~Event();
+
+      int GetFileDescriptor();
+
+      int AddEvent(int evnet);
+
+      int RemoveEvent(int event);
+
+      int GetActives();
+
+      void * GetData();
+
+    private:
+      int fd_;
+      int events_;
+      int active_;
+      void * data_;
   };
 
 } // namespace skunk
-
-
 #endif // !__SKUNK_EVENTS_H__

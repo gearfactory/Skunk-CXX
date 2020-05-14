@@ -9,7 +9,6 @@
 #include "skunk/utility.h"
 
 namespace skunk{
-  class Condition;
   /**
     * DirectBuffer will be used as the only interface to read/write data from the application layer
     *+------------+-------------+------------+
@@ -27,7 +26,6 @@ namespace skunk{
     * 
     * the Buffer could not be copied 
    */
-  template<class DerivedBuffer>
   class Buffer: noncopyable {
     public: 
       Buffer(size_t size){}
@@ -37,65 +35,45 @@ namespace skunk{
        * Get the readable size of this buffer
        * @return return the readable size
        */
-      size_t GetReadableSize() const{
-        return (static_cast<DerivedBuffer&>(*this).GetReadableSize());
-      }
+      size_t GetReadableSize() const;
 
       /**
        * Get the writeable size of this buffer
        * @return writeable size
        */
-      size_t GetWriteableSize() const{
-        return (static_cast<DerivedBuffer&>(*this).GetWriteableSize());
-      }
+      size_t GetWriteableSize() const;
 
       /**
        * Get the buffer capcity
        * @return capcity of this buffer 
        */
-      size_t GetCapcity() const{
-        return (static_cast<DerivedBuffer&>(*this).GetCapcity());
-      }
+      size_t GetCapcity() const;
 
       /**
        * Back the pointer of read pointer
        * @param size the size to back  
        */
-      void Back(size_t size){
-        static_cast<DerivedBuffer&>(*this).Back(size);
-      }
+      void Back(size_t size);
 
       /**
        * Skip size length data from read pointer 
        * @param size the size to skip
        */
-      void Skip(size_t size){
-        static_cast<DerivedBuffer&>(*this).Skip(size);
-      }
+      void Skip(size_t size);
 
       /**
        * Peek the current pointer of read pointer
        * @return current read pointer of this buffer  
        */
-      char * Peek() const{
-        return (static_cast<DerivedBuffer&>(*this).Peek());
-      }
+      char * Peek() const;
 
-      void Swap(DerivedBuffer& rhs){
-        static_cast<DerivedBuffer&>(*this).Swap(rhs);
-      }
+      void Swap(DerivedBuffer& rhs);
       
-      char * Read(size_t size){
-        return (static_cast<DerivedBuffer&>(*this).Read(size));
-      }
+      char * Read(size_t size);
 
-      size_t Write(const char * data, size_t length){
-        return (static_cast<DerivedBuffer&>(*this).Write(data, length));
-      }
+      size_t Write(const char * data, size_t length);
 
-      void Append(char ch){
-        static_cast<DerivedBuffer&>(*this).Append(ch);
-      }
+      void Append(char ch);
       
       // These Reader should return the host byte order data
       /// euqals char type

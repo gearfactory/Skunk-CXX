@@ -9,8 +9,7 @@ namespace skunk{
       ~Timer();
     
     public:
-      void OnTimeout();
-      void OnInterval();
+      void OnExpired();
   };
 
   class TimeWheel{

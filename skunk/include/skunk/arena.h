@@ -5,19 +5,17 @@
 
 namespace skunk{
   
-  enum class Aligned{
-    _32 = 1,
-    _64
-  };
-
+  /// user interface 
+  /// will alloc memory by the Block , MiniBlock 1024 SmallBlock 256K BigBlock 512K 
   class Allocator{
-    public: 
+    public:
+      Allocator();
+      ~Allocator();
 
+    public:
       void * Alloc(size_t size);
-      void * Alloc(Aligned aligned, size_t size);
+      void Free(void * mem);
 
-    private: 
-      std::mutex mutex_;
   };
 } // namespace skunk
 
