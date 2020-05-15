@@ -2,16 +2,24 @@
 #define __SKUNK_BOOTSTRAP_H__
 
 #include <future>
+#include <functional>
+#include <memory>
 
 namespace skunk{
+  
+  class EventLoop;
+  class Connection;
+  class Buffer;
   
 
   class BootStrap{
     public:
-      void OnConnection();
       void OnClose();
       void OnError();
-      void OnMessage();
+      /// will read from the TCP stream use the function 
+      void OnInbound();
+      /// will write to the TCP stream;
+      void OnOutbound();
 
       std::future<void> Start() noexcept;
   };

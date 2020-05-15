@@ -3,7 +3,9 @@
 
 namespace skunk{
   
+  class Logger{
+
+  };
+
 } // namespace skunk
-
-
 #endif // !__SKUNK_LOGGING_H__

@@ -24,7 +24,6 @@ namespace skunk{
     private:
       std::unique_ptr<Socket> socket_;
       std::unique_ptr<Channel> channel_;
-
       std::shared_ptr<EventLoop> eventloop_;
 
       Buffer * inbound_;

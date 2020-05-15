@@ -2,10 +2,10 @@
 
 #include <functional>
 #include <memory>
+#include <stdint.h>
 
 namespace skunk{
 
-  class Epoller;
   class EventLoop;
 
   class Channel{
@@ -20,10 +20,25 @@ namespace skunk{
       ~Channel();
 
     public:
+      
+      void EnableReading();
+      void DisableReading();
 
+      void EnableWriting();
+      void DisableWriting();
+
+      void EnableAll();
+      void DisableAll();
+
+      bool IsWriteable();
+      bool IsReadable();
     
+    private:
+      friend class EventLoop;
+
+      /// will dispatch the event which occur on the timestamp 
+      void Dispatch(int64_t timestamp);
     private: 
-      friend class Epoller;
       /// the fd could be timerfd eventfd signalfd socketfd
       int fd_;
 
@@ -31,6 +46,9 @@ namespace skunk{
       int interest_;
       /// now active event 
       int active_;
+
+      /// keep the eventloop in class to use the eventloop internal method 
+      EventLoop * eventloop_;
 
       /// read callback function
       std::function<void()> readCallback_;
